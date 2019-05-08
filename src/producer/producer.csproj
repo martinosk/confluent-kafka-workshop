@@ -10,4 +10,10 @@
     <PackageReference Include="Confluent.Kafka" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="cacert.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

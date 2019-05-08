@@ -69,7 +69,7 @@ namespace producer
                     ApiVersionFallbackMs = 0,
                     SaslMechanism = SaslMechanism.Plain,
                     SecurityProtocol = SecurityProtocol.SaslSsl,
-                    SslCaLocation = @"C:/Projects/confluent-kafka-workshop/cacert.pem",
+                    SslCaLocation = "cacert.pem",
                     RequestTimeoutMs = 3000
                 };
                 return producerConfig;
