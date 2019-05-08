@@ -26,6 +26,8 @@ namespace producer
         {
             if (error.IsFatal)
                 Environment.FailFast($"Fatal error in Kafka producer: {error.Reason}. Shutting down...");
+            else
+                throw new Exception(error.Reason);
         }
 
         public class KafkaConfiguration
@@ -51,13 +53,8 @@ namespace producer
                 var configurationKeys = new[]
                 {
                     "bootstrap.servers",
-                    "broker.version.fallback",
-                    "api.version.fallback.ms",
-                    "ssl.ca.location",
                     "sasl.username",
-                    "sasl.password",
-                    "sasl.mechanisms",
-                    "security.protocol",
+                    "sasl.password"
                 };
 
                 var config = configurationKeys
@@ -72,6 +69,7 @@ namespace producer
                     ApiVersionFallbackMs = 0,
                     SaslMechanism = SaslMechanism.Plain,
                     SecurityProtocol = SecurityProtocol.SaslSsl,
+                    SslCaLocation = @"C:/Projects/confluent-kafka-workshop/cacert.pem",
                     RequestTimeoutMs = 3000
                 };
                 return producerConfig;
