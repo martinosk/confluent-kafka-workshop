@@ -9,3 +9,5 @@ function SetEnvironmentVariable([string] $name, [string] $value)
     [Environment]::SetEnvironmentVariable($name, $value, [EnvironmentVariableTarget]::Machine)    
 }
 SetEnvironmentVariable "CONFLUENT_KAFKA_WORKSHOP_BOOTSTRAP_SERVERS"
+SetEnvironmentVariable "CONFLUENT_KAFKA_WORKSHOP_SASL_USERNAME"
+SetEnvironmentVariable "CONFLUENT_KAFKA_WORKSHOP_SASL_PASSWORD"

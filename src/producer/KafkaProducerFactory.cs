@@ -9,9 +9,9 @@ namespace producer
     {
         private readonly KafkaConfiguration _configuration;
 
-        public KafkaProducerFactory(KafkaConfiguration configuration)
+        public KafkaProducerFactory()
         {
-            _configuration = configuration;
+            _configuration = new KafkaConfiguration();
         }
 
         public IProducer<string, string> Create()
@@ -65,8 +65,15 @@ namespace producer
                              .Where(pair => pair != null)
                              .Select(pair => new KeyValuePair<string, string>(pair.Item1, pair.Item2))
                              .ToList();
-                var producerConfig = new ProducerConfig(config);
-                producerConfig.RequestTimeoutMs = 3000;
+                var producerConfig = new ProducerConfig(config)
+                {
+                    ApiVersionRequest = true,
+                    BrokerVersionFallback = "0.10.0.0",
+                    ApiVersionFallbackMs = 0,
+                    SaslMechanism = SaslMechanism.Plain,
+                    SecurityProtocol = SecurityProtocol.SaslSsl,
+                    RequestTimeoutMs = 3000
+                };
                 return producerConfig;
             }
         }
