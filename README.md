@@ -1,0 +1,1 @@
+Super simple examples of using the Confluent Kafka libraries with the managed Confluent Kafka
