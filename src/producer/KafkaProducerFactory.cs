@@ -38,11 +38,11 @@ namespace producer
 
             private Tuple<string, string> GetConfiguration(string key)
             {
-                var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Process);
+                var value = Environment.GetEnvironmentVariable(Key(key), EnvironmentVariableTarget.Process);
 
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    return null;
+                    throw new Exception($"Missing environment variable {Key(key)}");
                 }
 
                 return Tuple.Create<string, string>(key, value);
